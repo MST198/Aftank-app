@@ -1,4 +1,4 @@
-const CACHE_NAME = "equip-aftank-v2";
+const CACHE_NAME = "equip-aftank-v3";
 const APP_SHELL = [
   "./",
   "./index.html",

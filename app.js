@@ -7,7 +7,6 @@ const hourMeterField = document.querySelector("#hourMeterField");
 const photosInput = document.querySelector("#photos");
 const photoList = document.querySelector("#photoList");
 const toast = document.querySelector("#toast");
-const installButton = document.querySelector("#installButton");
 const pwaStatus = document.querySelector("#pwaStatus");
 
 const scannerDialog = document.querySelector("#scannerDialog");
@@ -19,7 +18,6 @@ const manualScanValue = document.querySelector("#manualScanValue");
 const useManualValue = document.querySelector("#useManualValue");
 
 let selectedPhotos = [];
-let deferredInstallPrompt = null;
 let scannerStream = null;
 let scannerTimer = null;
 
@@ -153,14 +151,7 @@ function getMailBody(includePhotoAttachmentNote = false) {
     "OPMERKINGEN",
     notes,
     "",
-    "--------------------------------",
-    "BIJLAGEN",
-    photoText,
-    "",
     "================================",
-    "Controleer de gegevens voor verzenden.",
-    "================================",
-    "",
     "Met vriendelijke groet,",
     userName,
   ].join("\n");
@@ -357,20 +348,6 @@ scanButton.addEventListener("click", startScanner);
 closeScanner.addEventListener("click", stopScanner);
 useManualValue.addEventListener("click", useManualScanValue);
 scannerDialog.addEventListener("cancel", stopScanner);
-
-window.addEventListener("beforeinstallprompt", (event) => {
-  event.preventDefault();
-  deferredInstallPrompt = event;
-  installButton.hidden = false;
-});
-
-installButton.addEventListener("click", async () => {
-  if (!deferredInstallPrompt) return;
-  deferredInstallPrompt.prompt();
-  await deferredInstallPrompt.userChoice;
-  deferredInstallPrompt = null;
-  installButton.hidden = true;
-});
 
 window.addEventListener("online", () => (pwaStatus.textContent = "Online"));
 window.addEventListener("offline", () => (pwaStatus.textContent = "Offline klaar"));

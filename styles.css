@@ -173,7 +173,6 @@ textarea:focus {
 }
 
 .icon-button,
-.ghost-button,
 .primary-button,
 .secondary-button,
 .photo-picker {
@@ -321,9 +320,9 @@ svg {
 
 .secondary-button,
 .ghost-button {
-  border-color: #cbd8d1;
-  background: #fff;
-  color: var(--ink);
+  border-color: #d7aa16;
+  background: var(--accent);
+  color: #101820;
 }
 
 .scanner-dialog {
@@ -433,12 +432,17 @@ svg {
   input,
   textarea,
   .segmented-control span,
-  .secondary-button,
-  .ghost-button,
   .scanner-dialog {
     background: #101820;
     color: var(--ink);
     border-color: #3b4d58;
+  }
+
+  .secondary-button,
+  .ghost-button {
+    border-color: #d7aa16;
+    background: var(--accent);
+    color: #101820;
   }
 
   .action-bar {

@@ -20,7 +20,9 @@ Gebruik op telefoon bij voorkeur hetzelfde wifi-netwerk en open het lokale IP-ad
 
 ## Belangrijk over foto's
 
-Browsers staan niet toe dat `mailto:` automatisch bestanden als bijlage toevoegt. De app telt en benoemt toegevoegde foto's in de conceptmail, waarna de gebruiker de foto's handmatig in de mail-app kan toevoegen.
+Browsers staan niet toe dat `mailto:` automatisch bestanden als bijlage toevoegt. Zonder foto's opent de app daarom direct een conceptmail via `mailto:`.
+
+Met foto's gebruikt de app waar mogelijk de mobiele deel-functie (`navigator.share`). Kies daarna Mail; iPhone en Android kunnen de geselecteerde foto's dan als bijlage meenemen.
 
 ## Bestanden
 
