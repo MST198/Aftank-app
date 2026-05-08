@@ -1,0 +1,31 @@
+{
+  "name": "Equip Aftank Registratie",
+  "short_name": "Aftank",
+  "description": "Mobiele PWA voor het registreren van brandstof-aftankbeurten.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#101820",
+  "theme_color": "#101820",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "assets/icons/equip-aftank-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/equip-aftank-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/equip-aftank.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
