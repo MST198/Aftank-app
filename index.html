@@ -1,1 +1,143 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#101820">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Aftank">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Aftank registratie</title>
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" href="assets/icons/equip-aftank.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="assets/icons/equip-aftank-192.png">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="app-header">
+        <div>
+          <p class="eyebrow">Equip Rental</p>
+          <h1>Aftankbeurt</h1>
+        </div>
+        <div class="status-pill" id="pwaStatus">Offline klaar</div>
+      </header>
 
+      <main>
+        <section class="intro-panel" aria-labelledby="quickStartTitle">
+          <div>
+            <h2 id="quickStartTitle">Registratie op locatie</h2>
+            <p>Vul de gegevens in, voeg foto's toe en open direct een conceptmail.</p>
+          </div>
+          <button class="ghost-button" type="button" id="installButton" hidden>
+            <span aria-hidden="true">+</span>
+            Installeren
+          </button>
+        </section>
+
+        <form id="fuelForm" novalidate>
+          <section class="form-section" aria-labelledby="detailsTitle">
+            <h2 id="detailsTitle">Gegevens</h2>
+
+            <label class="field">
+              <span>Klantnaam</span>
+              <input id="customerName" name="customerName" autocomplete="organization" required placeholder="Bijv. Bouwbedrijf Jansen">
+              <small class="error-message" data-error-for="customerName"></small>
+            </label>
+
+            <label class="field">
+              <span>Tanknummer / Machinenummer</span>
+              <div class="input-action">
+                <input id="assetNumber" name="assetNumber" autocomplete="off" required placeholder="Scan of typ nummer">
+                <button class="icon-button" type="button" id="scanButton" aria-label="Barcode of QR-code scannen" title="Scannen">
+                  <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7V5a1 1 0 0 1 1-1h2M17 4h2a1 1 0 0 1 1 1v2M20 17v2a1 1 0 0 1-1 1h-2M7 20H5a1 1 0 0 1-1-1v-2M7 8v8M11 8v8M15 8v8M18 8v8"/></svg>
+                </button>
+              </div>
+              <small class="error-message" data-error-for="assetNumber"></small>
+            </label>
+
+            <label class="field">
+              <span>Aantal liters getankt</span>
+              <input id="liters" name="liters" inputmode="decimal" required placeholder="Bijv. 125,5">
+              <small class="error-message" data-error-for="liters"></small>
+            </label>
+
+            <fieldset class="field">
+              <legend>Urenstand aanwezig?</legend>
+              <div class="segmented-control" role="radiogroup" aria-label="Urenstand aanwezig">
+                <label>
+                  <input type="radio" name="hourMeterPresent" value="Ja" checked>
+                  <span>Ja</span>
+                </label>
+                <label>
+                  <input type="radio" name="hourMeterPresent" value="Nee">
+                  <span>Nee</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <label class="field" id="hourMeterField">
+              <span>Urenstand</span>
+              <input id="hourMeter" name="hourMeter" inputmode="decimal" required placeholder="Bijv. 2480">
+              <small class="error-message" data-error-for="hourMeter"></small>
+            </label>
+          </section>
+
+          <section class="form-section" aria-labelledby="photosTitle">
+            <h2 id="photosTitle">Foto's</h2>
+            <label class="photo-picker">
+              <input id="photos" name="photos" type="file" accept="image/*" capture="environment" multiple>
+              <span class="photo-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 8a2 2 0 0 1 2-2h2l1.5-2h5L16 6h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><circle cx="12" cy="13" r="3"/></svg>
+              </span>
+              <span>Foto's toevoegen</span>
+            </label>
+            <div class="photo-list" id="photoList" aria-live="polite"></div>
+            <p class="hint">Foto's worden geteld in de mail. Voeg ze daarna in de mail-app zelf als bijlage toe.</p>
+          </section>
+
+          <section class="form-section" aria-labelledby="notesTitle">
+            <h2 id="notesTitle">Afronding</h2>
+            <label class="field">
+              <span>Opmerkingen</span>
+              <textarea id="notes" name="notes" rows="4" placeholder="Schade, situatie op locatie of bijzonderheden"></textarea>
+            </label>
+
+            <label class="field">
+              <span>App gebruiker</span>
+              <input id="userName" name="userName" autocomplete="name" placeholder="Naam monteur / chauffeur">
+            </label>
+          </section>
+
+          <div class="action-bar">
+            <button class="secondary-button" type="reset">Wissen</button>
+            <button class="primary-button" type="submit">
+              <span aria-hidden="true">✉</span>
+              Mail maken
+            </button>
+          </div>
+        </form>
+      </main>
+    </div>
+
+    <dialog id="scannerDialog" class="scanner-dialog">
+      <div class="scanner-head">
+        <h2>Scan nummer</h2>
+        <button class="icon-button" type="button" id="closeScanner" aria-label="Scanner sluiten">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <video id="scannerVideo" playsinline muted></video>
+      <div class="scan-frame" aria-hidden="true"></div>
+      <p id="scannerMessage">Richt de camera op een barcode of QR-code.</p>
+      <label class="field fallback-field">
+        <span>Handmatig invullen</span>
+        <input id="manualScanValue" autocomplete="off" placeholder="Nummer invoeren">
+      </label>
+      <button class="primary-button" type="button" id="useManualValue">Nummer gebruiken</button>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js" defer></script>
+  </body>
+</html>
