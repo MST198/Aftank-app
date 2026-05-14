@@ -24,37 +24,25 @@
       </header>
 
       <main>
-        <section class="intro-panel" aria-labelledby="quickStartTitle">
-          <div>
-            <h2 id="quickStartTitle">Registratie op locatie</h2>
-            <p>Vul de gegevens in, voeg foto's toe en open direct een tankbon-mail.</p>
-          </div>
-        </section>
-
         <form id="fuelForm" novalidate>
           <section class="form-section" aria-labelledby="detailsTitle">
             <h2 id="detailsTitle">Gegevens</h2>
 
             <label class="field">
               <span>Klantnaam</span>
-              <input id="customerName" name="customerName" autocomplete="organization" required placeholder="Bijv. Bouwbedrijf Jansen">
+              <input id="customerName" name="customerName" autocomplete="organization" required>
               <small class="error-message" data-error-for="customerName"></small>
             </label>
 
             <label class="field">
               <span>Tanknummer / Machinenummer</span>
-              <div class="input-action">
-                <input id="assetNumber" name="assetNumber" autocomplete="off" required placeholder="Scan of typ nummer">
-                <button class="icon-button" type="button" id="scanButton" aria-label="Barcode of QR-code scannen" title="Scannen">
-                  <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7V5a1 1 0 0 1 1-1h2M17 4h2a1 1 0 0 1 1 1v2M20 17v2a1 1 0 0 1-1 1h-2M7 20H5a1 1 0 0 1-1-1v-2M7 8v8M11 8v8M15 8v8M18 8v8"/></svg>
-                </button>
-              </div>
+              <input id="assetNumber" name="assetNumber" autocomplete="off" required>
               <small class="error-message" data-error-for="assetNumber"></small>
             </label>
 
             <label class="field">
               <span>Aantal liters getankt</span>
-              <input id="liters" name="liters" inputmode="decimal" required placeholder="Bijv. 125,5">
+              <input id="liters" name="liters" inputmode="decimal" required>
               <small class="error-message" data-error-for="liters"></small>
             </label>
 
@@ -74,7 +62,7 @@
 
             <label class="field" id="hourMeterField">
               <span>Urenstand</span>
-              <input id="hourMeter" name="hourMeter" inputmode="decimal" required placeholder="Bijv. 2480">
+              <input id="hourMeter" name="hourMeter" inputmode="decimal" required>
               <small class="error-message" data-error-for="hourMeter"></small>
             </label>
           </section>
@@ -89,19 +77,18 @@
               <span>Foto's toevoegen</span>
             </label>
             <div class="photo-list" id="photoList" aria-live="polite"></div>
-            <p class="hint">Met foto's opent de app de deel-functie van je telefoon, zodat je Mail kunt kiezen en de foto's als bijlage meegaan.</p>
           </section>
 
           <section class="form-section" aria-labelledby="notesTitle">
             <h2 id="notesTitle">Afronding</h2>
             <label class="field">
               <span>Opmerkingen</span>
-              <textarea id="notes" name="notes" rows="4" placeholder="Schade, situatie op locatie of bijzonderheden"></textarea>
+              <textarea id="notes" name="notes" rows="2"></textarea>
             </label>
 
             <label class="field">
               <span>App gebruiker</span>
-              <input id="userName" name="userName" autocomplete="name" placeholder="Naam monteur / chauffeur">
+              <input id="userName" name="userName" autocomplete="name">
             </label>
           </section>
 
@@ -115,23 +102,6 @@
         </form>
       </main>
     </div>
-
-    <dialog id="scannerDialog" class="scanner-dialog">
-      <div class="scanner-head">
-        <h2>Scan nummer</h2>
-        <button class="icon-button" type="button" id="closeScanner" aria-label="Scanner sluiten">
-          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
-        </button>
-      </div>
-      <video id="scannerVideo" playsinline muted></video>
-      <div class="scan-frame" aria-hidden="true"></div>
-      <p id="scannerMessage">Richt de camera op een barcode of QR-code.</p>
-      <label class="field fallback-field">
-        <span>Handmatig invullen</span>
-        <input id="manualScanValue" autocomplete="off" placeholder="Nummer invoeren">
-      </label>
-      <button class="primary-button" type="button" id="useManualValue">Nummer gebruiken</button>
-    </dialog>
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
     <script src="app.js" defer></script>

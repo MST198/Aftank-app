@@ -27,7 +27,7 @@ body {
   min-height: 100%;
   margin: 0;
   background:
-    linear-gradient(180deg, rgba(16, 24, 32, 0.97) 0, rgba(16, 24, 32, 0.92) 210px, #eef3f0 211px),
+    linear-gradient(180deg, rgba(16, 24, 32, 0.97) 0, rgba(16, 24, 32, 0.92) 128px, #eef3f0 129px),
     var(--panel-muted);
   color: var(--ink);
 }
@@ -45,15 +45,15 @@ button {
 .app-shell {
   width: min(100%, 760px);
   margin: 0 auto;
-  padding: max(18px, env(safe-area-inset-top)) 16px max(22px, env(safe-area-inset-bottom));
+  padding: max(8px, env(safe-area-inset-top)) 10px max(10px, env(safe-area-inset-bottom));
 }
 
 .app-header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 16px;
-  padding: 10px 0 18px;
+  gap: 10px;
+  padding: 4px 0 8px;
   color: #fff;
 }
 
@@ -74,24 +74,24 @@ p {
 
 h1 {
   margin-bottom: 0;
-  font-size: 2rem;
+  font-size: 1.45rem;
   line-height: 1.05;
 }
 
 h2 {
-  margin-bottom: 14px;
-  font-size: 1.05rem;
+  margin-bottom: 8px;
+  font-size: 0.98rem;
 }
 
 .status-pill {
   flex: 0 0 auto;
-  min-height: 34px;
-  padding: 8px 10px;
+  min-height: 28px;
+  padding: 6px 8px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.08);
   color: #e9f4ee;
-  font-size: 0.8rem;
+  font-size: 0.74rem;
   font-weight: 700;
 }
 
@@ -120,14 +120,14 @@ h2 {
 }
 
 .form-section {
-  margin-top: 14px;
-  padding: 16px;
+  margin-top: 8px;
+  padding: 10px;
 }
 
 .field {
   display: grid;
-  gap: 7px;
-  margin: 0 0 16px;
+  gap: 4px;
+  margin: 0 0 8px;
   border: 0;
   padding: 0;
 }
@@ -139,24 +139,24 @@ h2 {
 .field span,
 legend {
   color: var(--ink);
-  font-size: 0.94rem;
+  font-size: 0.86rem;
   font-weight: 800;
 }
 
 input,
 textarea {
   width: 100%;
-  min-height: 52px;
+  min-height: 42px;
   border: 1px solid #cbd8d1;
   border-radius: var(--radius);
   background: #fff;
   color: var(--ink);
-  padding: 13px 14px;
+  padding: 9px 11px;
   outline: none;
 }
 
 textarea {
-  min-height: 112px;
+  min-height: 58px;
   resize: vertical;
 }
 
@@ -166,13 +166,6 @@ textarea:focus {
   box-shadow: 0 0 0 4px rgba(18, 168, 107, 0.16);
 }
 
-.input-action {
-  display: grid;
-  grid-template-columns: 1fr 54px;
-  gap: 8px;
-}
-
-.icon-button,
 .primary-button,
 .secondary-button,
 .photo-picker {
@@ -180,22 +173,16 @@ textarea:focus {
   align-items: center;
   justify-content: center;
   gap: 9px;
-  min-height: 52px;
+  min-height: 42px;
   border-radius: var(--radius);
   border: 1px solid transparent;
   font-weight: 900;
   cursor: pointer;
 }
 
-.icon-button {
-  width: 54px;
-  background: var(--ink);
-  color: #fff;
-}
-
 svg {
-  width: 23px;
-  height: 23px;
+  width: 20px;
+  height: 20px;
   fill: none;
   stroke: currentColor;
   stroke-width: 2;
@@ -206,7 +193,7 @@ svg {
 .segmented-control {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
+  gap: 6px;
 }
 
 .segmented-control label {
@@ -221,7 +208,7 @@ svg {
 
 .segmented-control span {
   display: flex;
-  min-height: 52px;
+  min-height: 42px;
   align-items: center;
   justify-content: center;
   border: 1px solid #cbd8d1;
@@ -255,9 +242,9 @@ svg {
 
 .photo-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(82px, 1fr));
-  gap: 8px;
-  margin-top: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(58px, 1fr));
+  gap: 6px;
+  margin-top: 8px;
 }
 
 .photo-thumb {
@@ -280,8 +267,8 @@ svg {
   position: absolute;
   top: 5px;
   right: 5px;
-  width: 30px;
-  min-height: 30px;
+  width: 24px;
+  min-height: 24px;
   border: 0;
   border-radius: 999px;
   background: rgba(16, 24, 32, 0.84);
@@ -290,9 +277,14 @@ svg {
 }
 
 .error-message {
-  min-height: 18px;
+  min-height: 0;
   color: var(--danger);
+  font-size: 0.78rem;
   font-weight: 700;
+}
+
+.error-message:empty {
+  display: none;
 }
 
 .field.invalid input,
@@ -305,9 +297,9 @@ svg {
   bottom: 0;
   display: grid;
   grid-template-columns: 0.85fr 1.15fr;
-  gap: 10px;
-  margin: 16px -16px -22px;
-  padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+  gap: 8px;
+  margin: 8px -10px -10px;
+  padding: 8px 10px calc(8px + env(safe-area-inset-bottom));
   border-top: 1px solid rgba(16, 24, 32, 0.12);
   background: rgba(238, 243, 240, 0.94);
   backdrop-filter: blur(12px);
@@ -325,56 +317,6 @@ svg {
   color: #101820;
 }
 
-.scanner-dialog {
-  width: min(calc(100% - 24px), 520px);
-  border: 0;
-  border-radius: var(--radius);
-  padding: 14px;
-  background: #fff;
-  color: var(--ink);
-}
-
-.scanner-dialog::backdrop {
-  background: rgba(16, 24, 32, 0.72);
-}
-
-.scanner-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.scanner-head h2 {
-  margin-bottom: 0;
-}
-
-#scannerVideo {
-  width: 100%;
-  min-height: 260px;
-  margin-top: 14px;
-  border-radius: var(--radius);
-  background: #101820;
-  object-fit: cover;
-}
-
-.scan-frame {
-  height: 3px;
-  margin: -132px 18px 126px;
-  border-radius: 999px;
-  background: var(--accent);
-  box-shadow: 0 0 18px rgba(244, 196, 48, 0.88);
-}
-
-#scannerMessage {
-  margin-bottom: 12px;
-  color: var(--ink-soft);
-}
-
-.fallback-field {
-  margin-top: 12px;
-}
-
 .toast {
   position: fixed;
   left: 16px;
@@ -387,7 +329,7 @@ svg {
   border-radius: var(--radius);
   background: var(--ink);
   color: #fff;
-  padding: 13px 14px;
+  padding: 11px 12px;
   box-shadow: var(--shadow);
   transition: opacity 0.18s ease, transform 0.18s ease;
 }
@@ -404,7 +346,7 @@ svg {
 
   .form-section,
   .intro-panel {
-    padding: 20px;
+    padding: 14px;
   }
 
   .action-bar {
@@ -431,8 +373,7 @@ svg {
 
   input,
   textarea,
-  .segmented-control span,
-  .scanner-dialog {
+  .segmented-control span {
     background: #101820;
     color: var(--ink);
     border-color: #3b4d58;
