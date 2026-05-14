@@ -131,42 +131,16 @@ function validateForm() {
   return valid;
 }
 
-function getMailSubject(receiptNumber, now = new Date()) {
-  return `Aftankbeurt uitgevoerd - ${customerName.value.trim()} - ${dateFormatter.format(now)} - Bon ${receiptNumber}`;
+function getMailSubject() {
+  return "Diesel afgetankt";
 }
 
-function getMailBody(receiptNumber, now = new Date()) {
-  const receipt = getReceiptData(receiptNumber, now);
-
+function getMailBody() {
   return [
-    "Beste collega,",
+    "Hoi,",
     "",
-    "Hierbij de tankbon van de uitgevoerde aftankbeurt.",
-    "",
-    "================================",
-    "        EQUIP RENTAL",
-    "       AFTANK BONNETJE",
-    "================================",
-    "",
-    receiptLine("Bonnummer", receipt.receiptNumber),
-    receiptLine("Datum", receipt.date),
-    receiptLine("Tijd", receipt.time),
-    receiptLine("Bon type", "Aftankbeurt"),
-    "",
-    "--------------------------------",
-    receiptLine("Klant", receipt.customer),
-    receiptLine("Tank/machine nr.", receipt.asset),
-    receiptLine("Aantal liters", receipt.liters),
-    receiptLine("Urenstand aanwezig", receipt.hourMeterPresent),
-    receiptLine("Urenstand", receipt.hourMeter),
-    "",
-    "--------------------------------",
-    "OPMERKINGEN",
-    receipt.notes,
-    "",
-    "================================",
-    "Met vriendelijke groet,",
-    receipt.userName,
+    "Er is zojuist een brandstof tank of generator gevuld.",
+    "De gegevens staan op het bonnetje.",
   ].join("\n");
 }
 
@@ -297,14 +271,6 @@ async function createReceiptFile(receiptNumber, now = new Date()) {
   context.setLineDash([]);
   y += 42;
 
-  context.font = "20px Courier New, monospace";
-  context.fillStyle = "#101820";
-  context.fillText("Met vriendelijke groet,", margin, y);
-  y += 32;
-  context.font = "700 22px Arial, sans-serif";
-  context.fillText(receipt.userName, margin, y);
-  y += 50;
-
   context.textAlign = "center";
   context.font = "18px Courier New, monospace";
   context.fillStyle = "#4a535b";
@@ -321,8 +287,8 @@ async function createReceiptFile(receiptNumber, now = new Date()) {
 }
 
 function openMailtoDraft(receiptNumber, now = new Date()) {
-  const subject = getMailSubject(receiptNumber, now);
-  const mailto = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(getMailBody(receiptNumber, now))}`;
+  const subject = getMailSubject();
+  const mailto = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(getMailBody())}`;
 
   if (mailto.length > 7800) {
     showToast("De mail is erg lang. Kort de opmerkingen in als de mail-app niet opent.");
@@ -340,8 +306,8 @@ function openMailtoDraft(receiptNumber, now = new Date()) {
 }
 
 async function shareMailWithReceipt(receiptNumber, now = new Date()) {
-  const subject = getMailSubject(receiptNumber, now);
-  const body = getMailBody(receiptNumber, now);
+  const subject = getMailSubject();
+  const body = getMailBody();
   const receiptFile = await createReceiptFile(receiptNumber, now);
   const files = [receiptFile, ...selectedPhotos];
 
