@@ -205,7 +205,7 @@ async function createReceiptFile(receiptNumber, now = new Date()) {
   context.fillText("EQUIP RENTAL", width / 2, 74);
   context.fillStyle = "#ffffff";
   context.font = "700 24px Arial, sans-serif";
-  context.fillText("AFTANK BONNETJE", width / 2, 110);
+  context.fillText("AFTANK BON", width / 2, 110);
 
   let y = 178;
   context.textAlign = "left";
